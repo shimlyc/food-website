@@ -1,0 +1,102 @@
+*{
+    margin: 0px;
+}
+.navbar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top:61px;
+    z-index:2;
+    /* margin: 0 10%; */
+    /* background-color: rgb(42, 27, 27); */
+    background-image: linear-gradient(rgb(49, 22, 22),black,rgb(54, 24, 24));
+    
+    width: 100%;
+    
+}
+.title{
+    font-size: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+   margin-bottom: 20px;
+    margin-left: 100px;
+    
+}
+.menu{
+    display: flex;
+}
+.menuitems{
+    display:flex;
+    gap: 47px;
+    list-style: none;
+    margin-top: 10px;
+    margin-right: 250px;
+}
+.menuitems a{
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+.icon{
+    color: white;
+}
+.menubtn{
+height: 50px;
+display: none;
+}
+.button{
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: rgb(207, 131, 73);
+    padding-left:30px ;
+    padding-right: 30px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid white;
+}
+.wishlist{
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    padding-left:30px ;
+    padding-right: 30px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid white;
+    margin-left: 10px;
+}
+@media screen and (max-width:830px){
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .menu{
+        position: absolute;
+        right: 0;
+        margin-right: 10%;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 11px;
+        z-index: 3;
+    }
+    .menubtn{
+        display: block;
+        cursor: pointer;
+       
+    }
+    .menuitems{
+        flex-direction:column;
+        align-items: center;
+        gap: 13px;
+        border-radius: 10px;
+        background-color: rgb(20, 18, 18);
+        padding: 24px 33px;
+        box-shadow: 0 0 4px rgb(0,0,0,0.25);
+        margin-right: 0;
+
+    }
+}

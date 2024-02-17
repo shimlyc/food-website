@@ -1,0 +1,44 @@
+.collections {
+    background-color: black;
+    min-height: 100vh; /* Use min-height instead of height for responsiveness */
+  }
+  
+  .collections h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .collection-cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+  }
+  
+  .card1 {
+    /* background-image: linear-gradient(rgba(61, 25, 25, 0.858), black, rgba(54, 31, 31, 0.835)); */
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px; 
+    border: 1px solid grey;
+  }
+  
+  .card1 p {
+    color: white;
+  }
+  
+  @media(max-width: 1000px) {
+    .collection-cards {
+      flex-direction: column!important;
+      align-items: center;
+    }
+  
+    
+    .collection1{
+        flex-direction: column;
+    }
+    .collection2{
+        flex-direction: column;
+    }
+  }
+  

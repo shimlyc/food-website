@@ -1,0 +1,48 @@
+.work1{
+    background-color: black;
+    height: 80vh;
+}
+.head{
+    color: white;
+    text-align: center;
+}
+.work1-about h1{
+    color: white;
+    font-size: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.work1-about p{
+    color: white;
+  
+    margin-top: 20px;
+
+}
+.work1-image img{
+    width: 550px;
+}
+.work1-about{
+    margin-right: 100px;
+}
+
+@media screen and (max-width:1000px){
+  .work1-both{
+    flex-direction: column;
+  
+   
+    
+  }  
+  .work1-image img{
+      width: 200px;
+    
+    }
+    .work1-about h1{
+      font-size: 30px;
+      
+    }
+    .work1-about{
+      margin: 0px;
+    }
+
+
+
+}
