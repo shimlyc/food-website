@@ -4,19 +4,20 @@ import "./Explore.css"
 // import Explorecard from "./Explorecard"
 import { useEffect } from "react";
 import { AppContext } from "../App";
+// import Wishlist from "../components/wishlist/wishlist";
 
 function Explore() {
 
-  const {wishlistClick} = useContext(AppContext)
+  const {wishlistClick,wishlist,addtoCart,handleOnAdd,handleOnRemove,cart,removeClick} = useContext(AppContext)
   // const [selectedCategory, setSelectedCategory] = useState(null);
 const [category, setCategories] = useState([]);
 const [data, setData] = useState([]);
 const [search, setSearch] = useState([])
 const [display,setDisplay]=useState(false)
 const [refresh,setRefresh]=useState(false)
-const [fetchrefresh,setFetchrefresh]=useState(false)
+const [restore,setRestore]=useState(false)
 const [button,setButton]=useState(false)
-const[highlight,setHighlight]=useState([])
+// const[highlight,setHighlight]=useState([])
 
 
 
@@ -38,7 +39,7 @@ const[highlight,setHighlight]=useState([])
     fetchData();
     handleCategoryClick()
 
-  }, [fetchrefresh])
+  }, [restore])
 
 
   useEffect(() => {
@@ -123,39 +124,32 @@ if(searchTerm===""){
 
   const handleRestore=()=>{
 
-    setFetchrefresh(!fetchrefresh)
+    setRestore(!restore)
     setButton(false)
     
    }
  
-   const wishlistAdd=(strMealThumb,strArea)=>{
-    setHighlight([...highlight,{strMealThumb,strArea}])
-        wishlistClick(strMealThumb,strArea)
+   const wishlistAdd=(item)=>{
+   wishlistClick(item)
+
+   
     
+    
+       
+
     
       }
     
+
+
+    
       
       
-      const inWishlist = (strMealThumb) =>{
-        return highlight.some(item => item.strMealThumb === strMealThumb)
-      }
+  
 
-  // const wishlistAdd = (strMealThumb, strArea) => {
-  //   const isAlreadyInWishlist = inWishlist(strMealThumb);
-  //   if (isAlreadyInWishlist) {
-  //     // Remove from wishlist
-  //     setHighlight(highlight.filter(item => item.strMealThumb !== strMealThumb));
-  //   } else {
-  //     // Add to wishlist
-  //     setHighlight([...highlight, { strMealThumb, strArea }]);
-  //   }
-  //   wishlistClick(strMealThumb, strArea);
-  // };
 
-  // const inWishlist = (strMealThumb) => {
-  //   return highlight.some(item => item.strMealThumb === strMealThumb);
-  // };
+      
+
 
   return (
     <>
@@ -191,7 +185,7 @@ if(searchTerm===""){
 
 
           { !display && 
-            data?.map(({ strMealThumb, strArea, price }) => {
+            data?.map((item) => {
 
               return (
                 <>
@@ -199,14 +193,40 @@ if(searchTerm===""){
 
                   {/* <Explorecard photo={strMealThumb} name={strArea} amount={price} /> */}
 
-                  <div className="card2">
+                  <div className="card3">
        
-        <p   onClick={()=>wishlistAdd(strMealThumb,strArea)} style={{color:inWishlist(strMealThumb)?"red": "white", marginLeft:"10px", marginTop:"10px"}}>  {inWishlist(strMealThumb) ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>} </p>
+         <i  onClick={()=>wishlistAdd(item)} 
+        style={{color: wishlist.find((list)=>item.idMeal===list.idMeal)?"red":"white", marginLeft:"10px", marginTop:"10px"}} className="fa-solid fa-heart"></i> 
         <div>
-            <img style={{marginLeft:"45px",borderRadius:"90px" ,marginTop:"10px" ,width:"150px"}}  src={strMealThumb} alt="" />
+            <img style={{marginLeft:"45px",borderRadius:"90px" ,marginTop:"10px" ,width:"150px"}}  src={item.strMealThumb} alt="" />
         </div>
-        <h4 style={{color:"white" , marginTop:"10px", textAlign:"center"}}>{strArea}</h4>
-        <p  style={{textAlign:"center", color:"grey"}}>total sales:<span style={{textAlign:"center", color:"white"}}>{price}</span></p>
+        <h4 style={{color:"white" , marginTop:"10px", textAlign:"center"}}>{item.strArea}</h4>
+        <p  style={{textAlign:"center", color:"grey"}}>total sales:<span style={{textAlign:"center", color:"white"}}>{item.price}</span></p>
+
+          {
+            cart.find((cartItem)=>cartItem.idMeal===item.idMeal)?
+         <>
+
+<div style={{textAlign:"center",color:"white"}}>
+
+    <button onClick={()=>handleOnAdd(item)} className="wishlist"> +</button>
+{
+   cart.find((cartItem)=>cartItem.idMeal===item.idMeal).count 
+}
+    <button onClick={()=>handleOnRemove(item)} className="wishlist"> -</button>
+    </div>
+<p style={{color:"white",textAlign:"center"}}>
+    <i onClick={()=>removeClick(item)} style={{marginLeft:"10px", marginTop:"10px",color:"white"}} className="fa-solid fa-trash"></i></p>
+
+         </>
+         
+          
+
+    
+       : <div className="cart-div">
+                    <button onClick={()=>addtoCart(item)} className="cart" > <i className="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+            }
     </div>
 
                 </>
@@ -215,19 +235,23 @@ if(searchTerm===""){
           }
 
           { 
-            search.map(({ strMealThumb, strArea, price }) => {
+            search.map((item) => {
 
               return (
                 <>
 
 <div className="card2">
        
-        <p onClick={()=>wishlistAdd(strMealThumb,strArea)} style={{color:inWishlist(strMealThumb)?"red": "white", marginLeft:"10px", marginTop:"10px"}}> <i className="fa-solid fa-heart"></i></p>
+        {/* <p onClick={()=>wishlistAdd(item)} style={{color:"white", marginLeft:"10px", marginTop:"10px"}}> <i className="fa-solid fa-heart"></i></p>
+         */}
+
+<i  onClick={()=>wishlistAdd(item)} 
+        style={{color: wishlist.find((list)=>item.idMeal===list.idMeal)?"red":"white", marginLeft:"10px", marginTop:"10px"}} className="fa-solid fa-heart"></i> 
         <div>
-            <img style={{marginLeft:"45px",borderRadius:"90px" ,marginTop:"10px" ,width:"150px"}}  src={strMealThumb} alt="" />
+            <img style={{marginLeft:"45px",borderRadius:"90px" ,marginTop:"10px" ,width:"150px"}}  src={item.strMealThumb} alt="" />
         </div>
-        <h4 style={{color:"white" , marginTop:"10px", textAlign:"center"}}>{strArea}</h4>
-        <p  style={{textAlign:"center", color:"grey"}}>total sales:<span style={{textAlign:"center", color:"white"}}>{price}</span></p>
+        <h4 style={{color:"white" , marginTop:"10px", textAlign:"center"}}>{item.strArea}</h4>
+        <p  style={{textAlign:"center", color:"grey"}}>total sales:<span style={{textAlign:"center", color:"white"}}>{item.price}</span></p>
     </div>
                   {/* <Explorecard photo={strMealThumb} name={strArea} amount={price} /> */}
 

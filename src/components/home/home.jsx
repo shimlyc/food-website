@@ -1,18 +1,10 @@
 
-
-
 import "./home.css"
 
 
 
 function Home() {
-
-
-
-
-
-
-  return (
+ return (
     <div className="home">
 <div className="heading">
 

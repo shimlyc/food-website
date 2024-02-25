@@ -6,10 +6,14 @@ function Wishlist() {
 
  
 
-  const { wishlist } = useContext(AppContext)
+  const { wishlist, wishlistClick} = useContext(AppContext)
   console.log(wishlist, "wishlist");
 
+const wishlistRemove=(item)=>{
 
+wishlistClick(item)
+
+}
   return (
     <>
       <div className="collections">
@@ -23,15 +27,15 @@ function Wishlist() {
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
 
           {
-            wishlist.map(({strMealThumb,strArea},index)=>{
+            wishlist.map((item,index)=>{
 return(
           <div className="card2" key={index}>
 
-            <p style={{ color: "red", marginLeft: "10px", marginTop: "10px" }}> <i className="fa-solid fa-heart"></i> </p>
+            <p onClick={()=>wishlistRemove(item)} style={{  color: "red", marginLeft: "10px", marginTop: "10px" }}> <i className="fa-solid fa-heart"></i> </p>
             <div>
-              <img style={{ marginLeft: "45px", borderRadius: "90px", marginTop: "10px", width: "150px" }} src={strMealThumb} alt="" />
+              <img style={{ marginLeft: "45px", borderRadius: "90px", marginTop: "10px", width: "150px" }} src={item.strMealThumb} alt="" />
             </div>
-            <h4 style={{ color: "white", marginTop: "10px", textAlign: "center" }}>{strArea}</h4>
+            <h4 style={{ color: "white", marginTop: "10px", textAlign: "center" }}>{item.strArea}</h4>
             <p style={{ textAlign: "center", color: "grey" }}>total sales:<span style={{ textAlign: "center", color: "white" }}>34.53</span></p>
           </div>
 

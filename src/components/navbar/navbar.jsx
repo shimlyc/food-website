@@ -29,7 +29,10 @@ function Navbar(){
                 <button className="button">sign in </button>
                 <Link to={'/wishlist'}>
                 <button className="wishlist">Wishlist  <i className="fa-regular fa-heart"></i></button>
-                </Link>
+</Link>
+<Link to={'/cart'}>
+<button className="wishlist"> <i className="fa-solid fa-cart-shopping"></i></button>
+</Link>
             </ul>
            
        )}
